@@ -1,6 +1,6 @@
 <template>
   <div class="bg-gray-100">
-    <div class="tw-max-w-3xl tw-mx-auto tw-py-10">
+    <div class="tw-max-w-3xl tw-mx-auto tw-py-10 tw-px-4">
       <h1 class="tw-text-6xl">UI Replication</h1>
   
       <div class="tw-mt-10">
