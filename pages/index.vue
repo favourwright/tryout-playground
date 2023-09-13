@@ -17,7 +17,7 @@
 import CustomInput from '@/components/CustomInput.vue'
 
 const input = ref({
-  name: 'favour',
+  name: 'Favour',
   minLen: 8,
 })
 </script>
