@@ -50,6 +50,8 @@ const handleInput = (event: Event) => {
   }, 1000)
 }
 
+// replace shace characters with dot because literal space
+// introduces a weird behaviour with the pseudo element
 const replaceSpaces = (value: string) => {
   return value.replace(/\s/g, '.')
 }

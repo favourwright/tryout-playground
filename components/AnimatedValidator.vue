@@ -25,9 +25,8 @@ interface Props {
   progress: number
 }
 const props = defineProps<Props>()
-const _progress = computed(() => props.progress)
 const animate = ref(false)
-watch(_progress, (val) => {
+watch(()=>props.progress, (val) => {
   (val >= 100) ? (animate.value = true) : (animate.value = false)
 }, { immediate: true })
 </script>
