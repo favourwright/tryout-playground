@@ -7,7 +7,7 @@
         <CustomInput
           v-model="input.name"
           :minLen="input.minLen"
-          class="tw-rounded-2xl tw-border-[3px] tw-border-gray-200" />
+          class="tw-rounded-2xl tw-border-[3px] tw-border-gray-200 tw-bg-white" />
       </div>
     </div>
   </div>
