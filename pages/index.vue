@@ -5,10 +5,10 @@
   
       <div class="tw-mt-10">
         <CustomInput
-          v-model="input.name"
+          v-model="input"
           :options="{
-            minLen: input.minLen,
-            placeholder: 'Enter password',
+            minLen: 8,
+            placeholder: 'Password field',
             isPasswordField: true,
             isColorCoded: true,
           }"
@@ -21,8 +21,5 @@
 <script setup lang="ts">
 import CustomInput from '@/components/CustomInput.vue'
 
-const input = ref({
-  name: 'Favour',
-  minLen: 8,
-})
+const input = ref('')
 </script>

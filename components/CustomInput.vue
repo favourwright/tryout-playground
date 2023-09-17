@@ -50,7 +50,7 @@
       <v-icon
         @click="showPassword = !showPassword"
         :class="{ '!tw-text-black': showPassword }"
-        class="tw-transition-all tw-duration-300 tw-text-gray-300">
+        class="tw-transition-all tw-duration-300 tw-text-gray-300 tw-bg-white">
         {{ showPassword ? 'mdi-eye-outline' : 'mdi-eye-off-outline' }}
       </v-icon>
     </div>
