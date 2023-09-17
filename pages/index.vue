@@ -6,7 +6,12 @@
       <div class="tw-mt-10">
         <CustomInput
           v-model="input.name"
-          :minLen="input.minLen"
+          :options="{
+            minLen: input.minLen,
+            placeholder: 'Enter username',
+            isPasswordField: false,
+            isColorCoded: true,
+          }"
           class="tw-rounded-2xl tw-border-[3px] tw-border-gray-200 tw-bg-white" />
       </div>
     </div>
