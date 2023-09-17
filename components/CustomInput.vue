@@ -30,8 +30,11 @@
       tw-transition-all tw-duration-300">
       <!-- add fade-in fade-out animation if blink==true -->
       <AnimatedCursor
-        :class="{'blink': blink && !(validatorProgress >= 100) }"
-        class="tw-absolute [&>.colour]:tw-bg-emerald-700"
+        :class="[
+          {'blink': blink && !(validatorProgress >= 100) },
+          _3StepColor
+        ]"
+        class="tw-absolute"
         :progress="validatorProgress"
       />
     </span>
@@ -90,7 +93,14 @@ const handleFocus = () => {
 }
 
 const validatorProgress = computed(()=>{
+  if(!props.options?.isPasswordField) return (Number(props.modelValue.split('').length) / Number(props?.options?.minLen)) * 100
+  // if password field
   return (Number(props.modelValue.split('').length) / Number(props?.options?.minLen)) * 100
+})
+const _3StepColor = computed(() => {
+  if(validatorProgress.value >= 100) return '[&>.colour]:tw-bg-emerald-700'
+  if(validatorProgress.value >= 50) return '[&>.colour]:tw-bg-yellow-500'
+  return '[&>.colour]:tw-bg-red-500'
 })
 
 // if field is password, show password on click
