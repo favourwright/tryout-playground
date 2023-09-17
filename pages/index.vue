@@ -8,8 +8,8 @@
           v-model="input.name"
           :options="{
             minLen: input.minLen,
-            placeholder: 'Enter username',
-            isPasswordField: false,
+            placeholder: 'Enter password',
+            isPasswordField: true,
             isColorCoded: true,
           }"
           class="tw-rounded-2xl tw-border-[3px] tw-border-gray-200 tw-bg-white" />

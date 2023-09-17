@@ -83,8 +83,9 @@ const handleInput = (event: Event) => {
 
 // replace shace characters with dot because literal space
 // introduces a weird behaviour with the pseudo element
+const char = "•"
 const replaceSpaces = (value: string) => {
-  return value.replace(/\s/g, 'x')
+  return value.replace(/\s/g, char)
 }
 
 const input = ref<HTMLInputElement | null>(null)
@@ -92,12 +93,29 @@ const handleFocus = () => {
   input.value?.focus()
 }
 
+// each index represents a constraint from 1-100
+type Constaints = [number, number, number, number]
 const validatorProgress = computed(()=>{
-  if(!props.options?.isPasswordField) return (Number(props.modelValue.split('').length) / Number(props?.options?.minLen)) * 100
   // if password field
+  const passedValidationConstraints:Constaints = [0,0,0,0]
+  if(props.options?.isPasswordField) {
+    // check if password contains minLen characters
+    passedValidationConstraints[0] = Math.min(((Number(props.modelValue.split('').length) / Number(props?.options?.minLen)) * 100), 100)
+    // check if password contains at least one number
+    passedValidationConstraints[1] = /\d/.test(props.modelValue) ? 100 : 0
+    // check if password contains at least one uppercase letter
+    passedValidationConstraints[2] = /[A-Z]/.test(props.modelValue) ? 100 : 0
+    // check if password contains at least one special character
+    passedValidationConstraints[3] = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(props.modelValue) ? 100 : 0
+
+    return passedValidationConstraints.reduce((a, b) => a + b, 0) / passedValidationConstraints.length
+  }
+
+  // default
   return (Number(props.modelValue.split('').length) / Number(props?.options?.minLen)) * 100
 })
 const _3StepColor = computed(() => {
+  if(!props.options?.isColorCoded) return ''
   if(validatorProgress.value >= 100) return '[&>.colour]:tw-bg-emerald-700'
   if(validatorProgress.value >= 50) return '[&>.colour]:tw-bg-yellow-500'
   return '[&>.colour]:tw-bg-red-500'
